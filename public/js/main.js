@@ -10,6 +10,6 @@ define(["exports"], function (exports) {
             }
         }
     });
-    require(["react"]);
+    require(["react", "app"]);
 });
 /// <reference path="typings/tsd.d.ts" />

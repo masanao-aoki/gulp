@@ -10,4 +10,4 @@ require.config({
         }
     }
 });
-require(['react']);
+require(['react','app']);
