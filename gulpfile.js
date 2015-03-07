@@ -40,7 +40,7 @@ var jsDirectory = publicDirectory + '/' + js + '/';
 gulp.task('es6', function(){
 	gulp.src([es6WatchFiles])
 	.pipe(plumber())
-	.pipe(babel())
+	.pipe(babel({modules: 'amd'}))
 	.pipe(gulp.dest(jsDirectory));
 });
 

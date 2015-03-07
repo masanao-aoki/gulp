@@ -1,4 +1,13 @@
-"use strict";
+define(["exports"], function (exports) {
+  "use strict";
 
-var test = "test";
-var test = "test";
+  var test = "test";
+
+  console.log("test");
+
+  // import { Hello, message } from './Hello';
+
+  // class test {
+
+  // }
+});
