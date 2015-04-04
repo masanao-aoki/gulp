@@ -1,9 +1,9 @@
-define(['exports', 'flux'], function (exports, _flux) {
-  'use strict';
+define(["exports", "components/flux/dist/Flux"], function (exports, _componentsFluxDistFlux) {
+  "use strict";
 
-  Object.defineProperty(exports, '__esModule', {
+  var Dispatcher = _componentsFluxDistFlux.Dispatcher;
+  var AppDispatcher = exports.AppDispatcher = new Dispatcher();
+  Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  var AppDispatcher = new _flux.Dispatcher();
-  exports.AppDispatcher = AppDispatcher;
 });

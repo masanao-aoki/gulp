@@ -1,8 +1,7 @@
 import React from 'react';
 import Request from 'superagent';
-
-var apiPath = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1';
-
+import {Actions} from 'actions';
+import {PhotosStore} from 'store';
 
 
 var Tag = React.createClass({
@@ -29,28 +28,23 @@ var User = React.createClass({
 var Users = React.createClass({
   getInitialState() {
     return {
-    	tag: '花',
-      users: []
+      photos: []
     }
   },
   componentDidMount() {
-  	Request.get(apiPath, (res) => {
-      console.log(res.body);
-      this.setState({users: res.body.photos.photo});
+    PhotosStore.photo_on(this.chahgeState);
+    Actions.fetch();
+  },
+  chahgeState() {
+    this.setState({
+      photos: PhotosStore.photos
     });
-  },
-  onClick() {
-      console.log(this.state.tag);
-      Request.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1', (res) => {
-      	console.log(res.body);
-	      this.setState({users: res.body.photos.photo});
-      });
-  },
+  }, 
   set(test) {
   	console.log(test)
   },
   render() {
-    var users = this.state.users.map((user) => {
+    var photos = this.state.photos.map((user) => {
       return <User id={user.id} title={user.title} key={user.id}/>
     });
     return (
@@ -59,7 +53,7 @@ var Users = React.createClass({
 		    	<Tag name={this.state.tag} onClick={this.onClick} />
 	    	</ul>
   	      <p>ユーザー一覧</p>
-    	    {users}
+    	    {photos}
       </div>
     );
   }

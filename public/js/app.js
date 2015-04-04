@@ -1,4 +1,4 @@
-define(["exports", "react", "superagent"], function (exports, _react, _superagent) {
+define(["exports", "react", "superagent", "actions", "store"], function (exports, _react, _superagent, _actions, _store) {
   "use strict";
 
   var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
@@ -7,7 +7,8 @@ define(["exports", "react", "superagent"], function (exports, _react, _superagen
 
   var Request = _interopRequire(_superagent);
 
-  var apiPath = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1";
+  var Actions = _actions.Actions;
+  var PhotosStore = _store.PhotosStore;
 
   var Tag = React.createClass({
     displayName: "Tag",
@@ -44,32 +45,23 @@ define(["exports", "react", "superagent"], function (exports, _react, _superagen
 
     getInitialState: function getInitialState() {
       return {
-        tag: "花",
-        users: []
+        photos: []
       };
     },
     componentDidMount: function componentDidMount() {
-      var _this = this;
-
-      Request.get(apiPath, function (res) {
-        console.log(res.body);
-        _this.setState({ users: res.body.photos.photo });
-      });
+      PhotosStore.photo_on(this.chahgeState);
+      Actions.fetch();
     },
-    onClick: function onClick() {
-      var _this = this;
-
-      console.log(this.state.tag);
-      Request.get("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1", function (res) {
-        console.log(res.body);
-        _this.setState({ users: res.body.photos.photo });
+    chahgeState: function chahgeState() {
+      this.setState({
+        photos: PhotosStore.photos
       });
     },
     set: function set(test) {
       console.log(test);
     },
     render: function render() {
-      var users = this.state.users.map(function (user) {
+      var photos = this.state.photos.map(function (user) {
         return React.createElement(User, { id: user.id, title: user.title, key: user.id });
       });
       return React.createElement(
@@ -85,7 +77,7 @@ define(["exports", "react", "superagent"], function (exports, _react, _superagen
           null,
           "ユーザー一覧"
         ),
-        users
+        photos
       );
     }
   });
