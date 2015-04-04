@@ -7,7 +7,7 @@ define(["exports", "react", "superagent"], function (exports, _react, _superagen
 
   var Request = _interopRequire(_superagent);
 
-  var apiPath = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b4a133a7d75663da4bf49cfeac5db5ad&user_id=126218952%40N06&format=json&nojsoncallback=1&api_sig=0897366603b8111d7fe24e20cffc7396";
+  var apiPath = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1";
 
   var Tag = React.createClass({
     displayName: "Tag",
@@ -60,7 +60,7 @@ define(["exports", "react", "superagent"], function (exports, _react, _superagen
       var _this = this;
 
       console.log(this.state.tag);
-      Request.get("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=952cf48d6b663842d89f8bbf2b55bf60&user_id=126218952%40N06&tags=" + this.state.tag + "&format=json&nojsoncallback=1&api_sig=edda3df328fbcf0028057a89cfb8d034", function (res) {
+      Request.get("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1", function (res) {
         console.log(res.body);
         _this.setState({ users: res.body.photos.photo });
       });
