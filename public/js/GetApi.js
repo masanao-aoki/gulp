@@ -6,7 +6,7 @@ define(["exports", "superagent"], function (exports, _superagent) {
 	var Request = _interopRequire(_superagent);
 
 	var GetApi = exports.GetApi = function GetApi(coallback) {
-		var apiPath = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=37978321@N03&format=json&nojsoncallback=1";
+		var apiPath = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b500036e4c01adc54250ecd26f216817&user_id=126218952@N06&format=json&nojsoncallback=1";
 
 		Request.get(apiPath, function (res) {
 			coallback(res.body.photos.photo);
